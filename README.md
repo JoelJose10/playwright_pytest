@@ -37,5 +37,6 @@ pytest main.py --headed -v
 ```bash
 pytest main.py::test_login_flow --headed -v
 pytest main.py::test_add_fleece_jacket_to_cart --headed -v
+pytest main.py::test_product_sorting --headed -v
 ```
 
