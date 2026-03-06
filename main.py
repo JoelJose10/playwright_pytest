@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
 from config import BASE_URL, USERNAME, PASSWORD, PRODUCT_NAMES, PRODUCT_PRICES, SORT_OPTIONS
+from utils.screenshot import take_screenshot
 
 
 def perform_login(page):
@@ -17,6 +18,7 @@ def test_login_flow(page):
     """Test successful login to saucedemo.com."""
     login_page = perform_login(page)
     login_page.verify_login_success()
+    take_screenshot(page, "test_login_flow")
 
 
 #Assignment 
@@ -41,6 +43,7 @@ def test_add_fleece_jacket_to_cart(page):
     # Verify the correct product is in the cart
     cart_page = CartPage(page)
     cart_page.verify_product_in_cart("Sauce Labs Fleece Jacket")
+    take_screenshot(page, "test_add_fleece_jacket_to_cart")
 
 
 @pytest.mark.parametrize("sort_value,sort_name", SORT_OPTIONS)
@@ -80,3 +83,4 @@ def test_product_sorting(page, sort_value, sort_name):
         assert actual == expected, f"Expected: {expected}, but got: {actual}"
 
     print(f"✓ Sort option '{sort_name}' working correctly")
+    take_screenshot(page, f"test_product_sorting_{sort_value}")
